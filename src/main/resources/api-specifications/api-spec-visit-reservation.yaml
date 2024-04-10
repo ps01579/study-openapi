@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8080'
+paths:
+  /visit/v1/getVisitRequestList:
+    post:
+      tags:
+        - visit
+      summary: 출입예약 신청 현황 목록 조회
+      description: 출입예약 신청 현황을 목록으로 조회한다.
+      operationId: getVisitRequestList
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'components/schemas/VisitReservationList.yaml#/VisitReservationListRequest'
+      responses:
+        '200':
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                $ref: 'components/schemas/VisitReservationList.yaml#/VisitReservationListResponse'
+  /visit/v1/getVisitRequestDetail:
+    post:
+      tags:
+        - visit
+      summary: 출입예약 신청 상세 조회
+      description: 출입예약 신청 건의 상세 현황을 조회한다.
+      operationId: getVisitRequestDetail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'components/schemas/VisitReservationDetail.yaml#/VisitReservationDetailRequest'
+      responses:
+        '200':
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                $ref: 'components/schemas/VisitReservationDetail.yaml#/VisitReservationDetailResponse'
+  /visit/v1/saveVisitRequest:
+    post:
+      tags:
+        - visit
+      summary: 출입예약 신청
+      description: 출입예약을 신청한다.
+      operationId: saveVisitRequest
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema:
+                $ref: 'components/schemas/VisitReservationRequest.yaml#/VisitReservationRequest'
+      responses:
+        '200':
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                $ref: 'components/schemas/VisitReservationRequest.yaml#/VisitReservationResponse'

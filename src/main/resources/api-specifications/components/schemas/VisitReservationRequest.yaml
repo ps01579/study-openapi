@@ -1,0 +1,33 @@
+openapi: 3.0.3
+
+VisitReservationRequest:
+  title: 출입예약 Request
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 4
+    name:
+      type: string
+      example: Arthur Dent
+  # Both properties are required
+  required:
+    - id
+    - name
+VisitReservationResponse:
+  title: 출입예약 Response
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 4
+    name:
+      type: string
+      example: Arthur Dent
+    result:
+      type: string
+      example: Arthur Dent
+  # Both properties are required
+  required:
+    - id
+    - name
