@@ -1,0 +1,25 @@
+### 1. helloWorld
+GET {{visit-api}}/visit/v1/helloWorld
+
+### 1. getVisitRequestDetail
+POST {{visit-api}}/visit/v1/getVisitRequestDetail
+Content-Type: application/json
+
+{
+  "id" : 1,
+  "name" : "이름",
+  "details" : "상세입니다."
+}
+
+
+
+
+
+### 3. saveVisitRequest
+POST {{visit-api}}/visit/v1/saveVisitRequest
+Content-Type: application/json
+
+{
+  "id" : 1,
+  "name" : "이름"
+}

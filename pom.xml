@@ -25,12 +25,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-docker-compose</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-docker-compose</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -81,7 +81,7 @@
         <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>openapi-generator</artifactId>
-            <version>6.5.0</version>
+            <version>7.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.openapitools</groupId>
@@ -107,7 +107,7 @@
         <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>openapi-generator-maven-plugin</artifactId>
-            <version>6.5.0</version>
+            <version>7.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -115,6 +115,11 @@
             <version>8.0.0.Final</version>
         </dependency>
         <!-- end openapi -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
@@ -152,37 +157,57 @@
 <!--                    </execution>-->
 <!--                </executions>-->
 <!--            </plugin>-->
-                <plugin>
-                    <groupId>org.openapitools</groupId>
-                    <artifactId>openapi-generator-maven-plugin</artifactId>
-                    <version>6.5.0</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/api-specifications/api-spec-visit-reservation.yaml</inputSpec>
-                                <generatorName>spring</generatorName>
-                                <library>spring-boot</library>
-                                <apiPackage>com.mgilpark.study.openapi.controller</apiPackage>
-                                <modelPackage>com.mgilpark.study.openapi.model</modelPackage>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>7.5.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/api-specifications/api-spec-visit-reservation.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <library>spring-boot</library>
+                                <apiPackage>com.example.studyopenapi.visit.controller</apiPackage>
+                                <modelPackage>com.example.studyopenapi.visit.model</modelPackage>
                                 <supportingFilesToGenerate>
                                     ApiUtil.java
                                 </supportingFilesToGenerate>
-                                <configOptions>
-                                    <useTags>true</useTags>
-                                    <interfaceOnly>true</interfaceOnly>
-                                    <useBeanValidation>true</useBeanValidation>
-                                    <performBeanValidation>true</performBeanValidation>
-                                    <sourceFolder>/src/main/java</sourceFolder>
-                                    <implFolder>/src/main/java</implFolder>
-                                    <serializableModel>true</serializableModel>
-                                </configOptions>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
+                            <configOptions>
+                                <useTags>true</useTags>
+                                <interfaceOnly>true</interfaceOnly>
+                                <useBeanValidation>true</useBeanValidation>
+                                <performBeanValidation>true</performBeanValidation>
+                                <sourceFolder>/src/main/java</sourceFolder>
+                                <implFolder>/src/main/java</implFolder>
+                                <serializableModel>true</serializableModel>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/openapi/src/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 

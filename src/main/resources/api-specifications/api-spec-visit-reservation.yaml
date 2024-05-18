@@ -6,6 +6,23 @@ info:
 servers:
   - url: 'https://localhost:8080'
 paths:
+  /visit/v1/helloWorld:
+    get:
+      tags:
+        - visit
+      summary: Hello World
+      description: Hello World
+      operationId: helloWorld
+      responses:
+        '200':
+          description: Hello World
+          content: {
+            text/plain: {
+              schema: {
+                type: string
+              }
+            }
+          }
   /visit/v1/getVisitRequestList:
     post:
       tags:
